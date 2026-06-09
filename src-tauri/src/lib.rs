@@ -19,11 +19,24 @@ async fn open_webview(
         new_id = format!("foundry{}{}", sanitized_id, random_number);
     }
 
+    let extensions_dir = app
+        .path()
+        .app_data_dir()
+        .map_err(|e| format!("Failed to get app data directory: {}", e))?
+        .join("extensions");
+
+    std::fs::create_dir_all(&extensions_dir)
+        .map_err(|e| format!("Failed to create extensions directory: {}", e))?;
+
+    println!("extensions_dir: {:?}", extensions_dir);
+
     WebviewWindowBuilder::new(
         &app,
         &new_id,
         tauri::WebviewUrl::External(url.parse().map_err(|e| format!("Invalid URL: {}", e))?),
     )
+    .browser_extensions_enabled(true)
+    .extensions_path(&extensions_dir)
     .title(format!("Foundry VTT - {}", title))
     .incognito(incognito)
     .inner_size(1280.0, 800.0)
@@ -36,10 +49,7 @@ async fn open_webview(
     .resizable(true)
     .minimizable(true)
     .closable(true)
-    .on_new_window(|_url, _features| {
-        // Allow popup windows to open
-        NewWindowResponse::Allow
-    })
+    .on_new_window(|_url, _features| NewWindowResponse::Allow)
     .build()
     .map_err(|e| format!("Failed to create webview: {}", e))?;
 
@@ -52,7 +62,7 @@ pub fn run() {
     {
         std::env::set_var(
             "WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS",
-            "--force-high-performance-gpu"
+            "--force-high-performance-gpu",
         )
     }
 

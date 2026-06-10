@@ -1,0 +1,12 @@
+{
+	"id": "flc-hello-world",
+	"title": "FLC Hello World",
+	"description": "Minimal client-side module used to test FLC module injection.",
+	"version": "0.1.0",
+	"compatibility": {
+		"minimum": "12",
+		"verified": "13"
+	},
+	"scripts": ["scripts/hello-world.js"],
+	"styles": ["styles/hello-world.css"]
+}

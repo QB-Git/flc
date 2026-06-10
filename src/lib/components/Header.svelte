@@ -35,10 +35,13 @@
 		<Tabs.List>
 			<Tabs.Trigger
 				value="join"
-				class="w-48">Join Server</Tabs.Trigger>
+				class="w-36">Join Server</Tabs.Trigger>
 			<Tabs.Trigger
 				value="launch"
-				class="w-48">Launch Server</Tabs.Trigger>
+				class="w-36">Launch Server</Tabs.Trigger>
+			<Tabs.Trigger
+				value="modules"
+				class="w-36">Modules</Tabs.Trigger>
 		</Tabs.List>
 
 		<div class="flex items-center space-x-2">

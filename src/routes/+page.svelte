@@ -5,6 +5,7 @@
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import ServerAdd from "$components/ServerAdd.svelte";
 	import NodeserverAdd from "$components/NodeserverAdd.svelte";
+	import ClientModuleManager from "$components/ClientModuleManager.svelte";
 </script>
 
 <main class="container mx-auto grid max-w-3xl gap-2 py-2">
@@ -20,5 +21,10 @@
 		<NodeserverAdd />
 		<NodeserverLauncher />
 		<NodeserverGrid />
+	</Tabs.Content>
+	<Tabs.Content
+		value="modules"
+		class="space-y-4">
+		<ClientModuleManager />
 	</Tabs.Content>
 </main>

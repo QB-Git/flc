@@ -2,8 +2,9 @@
 	import * as Tooltip from "$ui/tooltip/index.js";
 	import * as Kbd from "$ui/kbd/index.js";
 	import { buttonVariants } from "$ui/button/index.js";
+	import { openFoundryDevtools } from "$scripts/shortcuts.svelte.js";
 
-	import { KeyboardIcon } from "@lucide/svelte";
+	import { BugIcon, KeyboardIcon } from "@lucide/svelte";
 </script>
 
 <Tooltip.Root>
@@ -23,6 +24,17 @@
 					<Kbd.Root>Ctrl/⌘</Kbd.Root>
 					<span>+</span>
 					<Kbd.Root class="w-6">F11</Kbd.Root>
+				</Kbd.Group>
+			</div>
+
+			<div class="flex items-center justify-between">
+				<span>Open Inspector</span>
+				<Kbd.Group>
+					<Kbd.Root>Ctrl/⌘</Kbd.Root>
+					<span>+</span>
+					<Kbd.Root>Alt</Kbd.Root>
+					<span>+</span>
+					<Kbd.Root class="w-6">I</Kbd.Root>
 				</Kbd.Group>
 			</div>
 
@@ -55,3 +67,10 @@
 		</div>
 	</Tooltip.Content>
 </Tooltip.Root>
+
+<button
+	class={buttonVariants({ variant: "ghost", size: "icon" })}
+	title="Open Foundry Inspector"
+	onclick={openFoundryDevtools}>
+	<BugIcon class="block size-5" />
+</button>

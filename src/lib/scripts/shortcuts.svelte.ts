@@ -1,3 +1,4 @@
+import { invoke } from "@tauri-apps/api/core";
 import { getAllWindows } from "@tauri-apps/api/window";
 import { register, unregisterAll } from "@tauri-apps/plugin-global-shortcut";
 
@@ -20,4 +21,18 @@ export async function registerShortcuts() {
 			await toggleFullscreen();
 		}
 	});
+
+	await register("CommandOrControl+Alt+I", async (event) => {
+		if (event.state === "Pressed") {
+			await openFoundryDevtools();
+		}
+	});
+}
+
+export async function openFoundryDevtools() {
+	try {
+		await invoke("open_foundry_devtools");
+	} catch (error) {
+		console.error("Failed to open Foundry devtools:", error);
+	}
 }

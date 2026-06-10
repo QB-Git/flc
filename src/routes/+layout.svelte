@@ -9,7 +9,7 @@
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
 
 	let { children } = $props();
-	let tab = $state<"join" | "launch">("join");
+	let tab = $state<"join" | "launch" | "modules">("join");
 
 	registerShortcuts();
 </script>
